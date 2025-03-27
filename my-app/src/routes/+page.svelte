@@ -1,5 +1,5 @@
 <script>
-import FloatingDots from "$lib/komponent/FloatingDots.svelte";
+import FloatingDots from "../lib/komponent/FloatingDots.svelte";
 let showAnimation = true;
 </script>
 
@@ -8,12 +8,12 @@ let showAnimation = true;
 <div class="homepage">
 
     <div class="overskrift">
-        <h1>GET YOUR MULTITOOL TODAY 
+        <h1>GET YOUR MULTIKIT TODAY 
             AND GET STARTED WITH CREATING</h1>
     </div>
     <div class="knapper">
-        <a class="signup" href="/homepage/signup">Sign up</a>
-        <a class="login" href="/homepage/login">Log in</a>
+        <a class="signup" href="/signup">Sign up</a>
+        <a class="login" href="/login">Log in</a>
     </div>
 </div>
 
@@ -27,7 +27,7 @@ let showAnimation = true;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        height: 87.5vh;
         z-index: 100;
     }
     .overskrift{

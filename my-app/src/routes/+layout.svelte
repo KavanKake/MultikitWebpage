@@ -13,9 +13,8 @@
 
 
     <div class="rightside">
-        <a href="/homepage/aboutus">About Us</a>
-        <a href="/homepage/login">Log in</a>
-        <a href="/homepage/signup">Sign up</a>
+        <a href="/login">Log in</a>
+        <a href="/signup">Sign up</a>
 
     </div>
 
@@ -38,11 +37,11 @@
         align-items: center;
         color: #fff;
         background-color: white;
-        padding-left: 25px; padding-right: 25px; padding-bottom: 10px;
+        padding-left: 25px; padding-right: 25px;
         border-bottom: 0.5em solid #3B0086;
-        padding-top: 2.5em;
         font-family: coolvetica;
         text-decoration: none;
+        height: 12.5vh;
     }
 
     .rightside {
