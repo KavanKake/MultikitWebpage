@@ -1,10 +1,10 @@
 const mariadb = require("mariadb");
 
 const pool = mariadb.createPool({
-  host: "localhost",
-  user: "root",
-  password: "LamineYamal19",
-  database: "MultiKit",
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   connectionLimit: 5,
 });
 

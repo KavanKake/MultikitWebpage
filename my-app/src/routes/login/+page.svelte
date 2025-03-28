@@ -3,6 +3,7 @@
     import { goto } from '$app/navigation';
 
 
+
     async function handleSubmit(event) {
         event.preventDefault();
 
@@ -61,6 +62,7 @@
                     if (hashedPassword === userPasswordEntry) {
                         console.log("Login successful");
                         goto("/dashboard");
+
                     } else {
                         alert("Incorrect password");
                     }
