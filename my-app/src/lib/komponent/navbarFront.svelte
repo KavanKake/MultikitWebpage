@@ -15,7 +15,7 @@
     <div class="rightside">
         <a href="/login">Log in</a>
         <a href="/signup">Sign up</a>
-
+        
     </div>
 
 
@@ -25,10 +25,6 @@
 
 </div>
 
-
-
-<slot>
-</slot>
 
 <style>
     .navbar {
