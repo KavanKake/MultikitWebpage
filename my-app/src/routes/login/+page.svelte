@@ -1,6 +1,7 @@
 <script>
     import { onMount } from "svelte";
     import { goto } from '$app/navigation';
+  import NavbarFront from "$lib/komponent/navbarFront.svelte";
 
 
 
@@ -86,6 +87,8 @@
         return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 </script>
+
+<NavbarFront />
 
 <div class="page">
     <div class="rightContainer">

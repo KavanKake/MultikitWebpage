@@ -2,6 +2,7 @@
 <script>
     import { onMount } from "svelte";
     import { goto } from '$app/navigation';
+  import NavbarFront from "$lib/komponent/navbarFront.svelte";
 
     const script = document.createElement('script');
     script.src = "https://apis.google.com/js/platform.js";
@@ -48,6 +49,8 @@
         }
     }
 </script>
+
+<NavbarFront />
 
 <div class="page">
     <div class="leftContainer">
@@ -319,26 +322,8 @@
         color: white;
     }
 
-    .google{
-        width: 200px;
-        height: 50px;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        font-size: 20px;
-        font-family: coolvetica;
-        background-color: transparent;
-        color: white;
-        border: #DB2955 2px solid;
-    }
-
     .submit:hover{
         background-color: #ae1c40;
-        color: white;
-        cursor: pointer;
-    }
-    
-    .google:hover{
-        border: #ae1c40 2px solid;
         color: white;
         cursor: pointer;
     }
@@ -346,6 +331,15 @@
     h1{
         font-family: coolvetica;
         margin: 0;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    a:hover{
+        text-decoration: underline;
+        color: white;
     }
     
 </style>
