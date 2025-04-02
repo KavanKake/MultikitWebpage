@@ -1,82 +1,45 @@
 <script>
     import { onMount } from "svelte";
     import { goto } from '$app/navigation';
-  import NavbarFront from "$lib/komponent/navbarFront.svelte";
-
-
+    import NavbarFront from "$lib/komponent/navbarFront.svelte";
+    import { isLoggedIn } from "../../stores/auth";
 
     async function handleSubmit(event) {
         event.preventDefault();
 
         const userInput = document.getElementById("user").value;
         const passwordInput = document.getElementById("password").value;
-
+        let user = null;
+        let userID = null;
+        let status = "failed";
+        const ip = await getUserIP();
+        const userAgent = navigator.userAgent;
+        
         try {
-            const response = await fetch("http://localhost:3000/email");
-            if (!response.ok) throw new Error("Failed to fetch email data");
-
-            const emaildata = await response.json();
-            const user = emaildata.find(usermail => usermail.email === userInput);
-
+            // Hent brukerinformasjon fra server
+            const response = await fetch("http://localhost:3000/userData");
+            if (!response.ok) throw new Error("Failed to fetch user data");
+            
+            const users = await response.json();
+            user = users.find(u => u.email === userInput || u.phonenumber === userInput);
+            
             if (user) {
-                console.log("Email found, checking for password");
-                console.log(user)
-                
-                const passwordresponse = await fetch("http://localhost:3000/userData");
-                if (!passwordresponse.ok) throw new Error("Failed to fetch password data");
-
-                const passworddata = await passwordresponse.json();
-                const userPasswordEntry = passworddata.find(p => p.email === userInput)?.password;
-                console.log(userPasswordEntry)
-                if (userPasswordEntry) {
-                    const hashedPassword = await hashPassword(passwordInput);
-                    console.log(hashedPassword)
-                    if (hashedPassword === userPasswordEntry) {
-                        console.log("Login successful");
-                        goto("/dashboard");
-                    } else {
-                        alert("Incorrect password");
-                    }
-                } else {
-                    alert("Password not found for this user");
+                userID = user.userID;
+                const hashedPassword = await hashPassword(passwordInput);
+                if (hashedPassword === user.password) {
+                    console.log("Login successful");
+                    isLoggedIn.set(true);
+                    status = "success";
+                    await logLogin(userID, ip, userAgent, status);
+                    goto("/dashboard");
+                    return;
                 }
-            } else {
-                const response = await fetch("http://localhost:3000/phonenumber");
-            if (!response.ok) throw new Error("Failed to fetch phonenumber data");
-
-            const phonenumberdata = await response.json();
-            const user = phonenumberdata.find(phonenumberdata => phonenumberdata.phonenumber === userInput);
-
-            if (user) {
-                console.log("phonenumber found, checking for password");
-                console.log(user)
-                
-                const passwordresponse = await fetch("http://localhost:3000/userData");
-                if (!passwordresponse.ok) throw new Error("Failed to fetch password data");
-
-                const passworddata = await passwordresponse.json();
-                const userPasswordEntry = passworddata.find(p => p.phonenumber === userInput)?.password;
-                console.log(userPasswordEntry)
-                if (userPasswordEntry) {
-                    const hashedPassword = await hashPassword(passwordInput);
-                    console.log(hashedPassword)
-                    if (hashedPassword === userPasswordEntry) {
-                        console.log("Login successful");
-                        goto("/dashboard");
-
-                    } else {
-                        alert("Incorrect password");
-                    }
-                } else {
-                    alert("Password not found for this user");
-                }
-            } else {
-                alert("User not found! Please try again or sign up.");
             }
-            }
+            alert("Incorrect email/phone or password");
         } catch (error) {
             console.error("Error fetching data:", error);
         }
+        await logLogin(userID, ip, userAgent, status);
     }
 
     async function hashPassword(password) {
@@ -85,6 +48,29 @@
         const hashbuffer = await crypto.subtle.digest('SHA-256', data);
         const hashArray = Array.from(new Uint8Array(hashbuffer));
         return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function getUserIP() {
+        try {
+            const response = await fetch('https://api64.ipify.org?format=json');
+            const data = await response.json();
+            return data.ip;
+        } catch (error) {
+            console.error("Error getting IP address:", error);
+            return "unknown";
+        }
+    }
+
+    async function logLogin(userID, ip, userAgent, status) {
+        try {
+            await fetch("http://localhost:3000/log-login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ userID, ip, userAgent, status })
+            });
+        } catch (error) {
+            console.error("Error logging login attempt:", error);
+        }
     }
 </script>
 
@@ -111,7 +97,6 @@
     
             <div class="buttons">
                 <button class="submit" type="submit">Log in</button>
-                <button class="google" type="button">Log in with Google</button>
             </div>
         </form>
     </div>
