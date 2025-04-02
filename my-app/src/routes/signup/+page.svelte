@@ -40,8 +40,8 @@
             });
 
             const result = await response.json();
-            alert("Sign up successful!");
-            goto("/dashboard");
+            alert("Signed in successfully! Log in to continue.");
+            goto("/login");
 
         } catch (error) {
             console.error("Error:", error);
