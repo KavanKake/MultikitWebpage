@@ -72,6 +72,10 @@
             console.error("Error logging login attempt:", error);
         }
     }
+
+	onMount(() => {
+		$isLoggedIn && goto('/dashboard'); // Gå videre om innlogget
+	});
 </script>
 
 <NavbarFront />
