@@ -279,6 +279,11 @@
         width: 20%;
         background-color: #3B0086;
         border-radius: 20px;
+        transition: transform 0.3s ease-in-out;
+
+        &:hover {
+        transform: scale(1.2); /* Use transform instead of scale */
+    }
     }
 
     .DMQ , .Convertor {
@@ -286,11 +291,13 @@
         width: 20%;
         background-color: #DB2955;
         border-radius: 20px;
+        transition: transform 0.3s ease-in-out;
+        &:hover {
+        transform: scale(1.2); /* Use transform instead of scale */
+    }
     }
 
-    .DMQ:hover , .Convertor:hover , .calculator:hover , .passwordGenerator:hover {
-        scale: 1.2;
-    }
+
 
     .DMQ , .Convertor , .calculator , .passwordGenerator{
         display: flex;
