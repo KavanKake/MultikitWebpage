@@ -27,7 +27,7 @@
 <div class="content">
     <div class="form">
         <h1 class="contactform">Contact form</h1>
-            <form method="POST" action="https://formsubmit.co/contact@kavinlokeswaran.no">
+            <form method="POST" action="https://formsubmit.co/Kavin_Lokeswaran1407@outlook.com">
                 <h3 class="name">Your name</h3>
                 <div class="nameSplit">
                     <input name="Name" type="text" class="placeholderName" placeholder="First name" required>
@@ -133,8 +133,6 @@
         align-items: center;
         padding-left: 2em;
         padding-right: 2em;
-        border: #3B0086 2px solid;
-        border-radius: 20px 20px 20px 20px;
         background-color: #0D5C63;
         opacity: 0.9;
     }
