@@ -1,3 +1,4 @@
+<!-- Tekst fra ChatGPT -->
 <div class="page">
     <h1>Privacy Policy</h1>
     <h3>Last updated: 26/03/2025</h3>
