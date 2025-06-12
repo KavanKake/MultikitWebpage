@@ -1,7 +1,6 @@
 <script>
+import NavbarFront from "../lib/komponent/navbarFront.svelte";
 import FloatingDots from "../lib/komponent/FloatingDots.svelte";
-  import NavbarFront from "../lib/komponent/navbarFront.svelte";
-import navbarFront from "../lib/komponent/navbarFront.svelte";
 let showAnimation = true;
 </script>
 
