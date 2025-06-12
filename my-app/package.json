@@ -47,6 +47,7 @@
 		"svelte"
 	],
 	"dependencies": {
-		"dotenv": "^16.4.7"
+		"dotenv": "^16.4.7",
+		"mysql2": "^3.14.1"
 	}
 }
