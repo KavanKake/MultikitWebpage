@@ -85,7 +85,9 @@
                     <h3>Valuta Conversion</h3>
                 </div>
                 <div class="passwordGenerator">
-                    <h3>Password Generator</h3>
+                    <a href="/tools/passwordgenerator">
+                        <h3>Password Generator</h3>
+                    </a>
                 </div>
                 <div class="DMQ">
                     <h3>Daily Motivational Quote</h3>
