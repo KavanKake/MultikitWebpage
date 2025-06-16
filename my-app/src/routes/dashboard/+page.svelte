@@ -1,17 +1,40 @@
 <script>
+    import { onMount, onDestroy } from "svelte";
+    import FloatingDots from "../../lib/komponent/FloatingDots.svelte";
+    import { fade } from 'svelte/transition';
     import { isLoggedIn } from '../../stores/auth';
 	import { goto } from '$app/navigation';
-    import { onMount } from 'svelte';
 
+    let showAnimation = true;
+    let showUserMenu = false;
+    let userMenuRef;
+    let iconRef;
 
+    function toggleUserMenu() {
+        showUserMenu = !showUserMenu;
+    }
 
-
+    function handleClickOutside(event) {
+        const clickedOutsideMenu = userMenuRef && !userMenuRef.contains(event.target);
+        const clickedOutsideIcon = iconRef && !iconRef.contains(event.target);
+        if (showUserMenu && clickedOutsideMenu && clickedOutsideIcon) {
+            showUserMenu = false;
+        }
+    }
 
     function logout() {
 		isLoggedIn.set(false);
 		goto('/');
 	}
 
+
+    onMount(() => {
+        document.addEventListener("click", handleClickOutside);
+    });
+
+    onDestroy(() => {
+        document.removeEventListener("click", handleClickOutside);
+    });
     onMount(() => {
 		$isLoggedIn && goto('/dashboard'); 
 	});
@@ -36,13 +59,19 @@
         <div class="center">
             <h1 class="title">Home</h1>
         </div>
-        <div class="right"> 
+        <div class="right">
             <a href="/contactus">
                 <h1 class="contact">Contact us</h1>
             </a>
-            <a href="/">
-                <img class="logo" src="/profile.png" alt="Logo" >
-            </a>
+            <div class="user-icon-container">
+                <img class="logo" src="/profile.png" alt="Profile icon" on:click={toggleUserMenu}>
+        
+                {#if showUserMenu}
+                    <div class="user-menu" bind:this={userMenuRef}>
+                        <button on:click={logout}>Logg ut</button>
+                    </div>
+                {/if}
+            </div>
         </div>
     </div>
 
@@ -311,6 +340,42 @@
         font-size: 1.5em;
         color: white;
     }
+
+    .user-icon-container {
+    position: relative;
+    cursor: pointer;
+}
+
+.user-menu {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    z-index: 2000;
+    width: 100px;
+}
+
+.user-menu button {
+    font-family: coolvetica;
+    background: none;
+    border: none;
+    font-size: 1.15em;
+    color: #0D5C63;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    width: fit-content;
+}
+
+.user-menu button:hover {
+    background-color: #f0f0f0;
+}
+
 
 
 

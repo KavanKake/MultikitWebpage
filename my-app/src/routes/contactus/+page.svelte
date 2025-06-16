@@ -160,7 +160,7 @@
     }
 
     a:hover{
-        color: #3B0086;
+        color: #0D5C63;
         scale: 1.2;
         text-decoration: underline;
     }
@@ -241,7 +241,7 @@
         font-size: 20px;
         font-family: coolvetica;
         background-color: transparent;
-        border: #3B0086 2px solid;
+        border: #0D5C63 2px solid;
         color: black;
     }
 
@@ -265,7 +265,7 @@
         font-size: 20px;
         font-family: coolvetica;
         background-color: transparent;
-        border: #3B0086 2px solid;
+        border: #0D5C63 2px solid;
         color: black    ;
     }
 

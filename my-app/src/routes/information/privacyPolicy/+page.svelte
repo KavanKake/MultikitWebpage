@@ -68,6 +68,15 @@ For any questions regarding this Privacy Policy, please reach out to us at conta
 
 </div>
 
+<div class="backbutton">
+    <a href="/signup">
+        <div class="circle">
+            <div class="arrow down">
+            </div>
+        </div>
+    </a>
+</div>
+
 
 
 <style>
@@ -113,5 +122,34 @@ For any questions regarding this Privacy Policy, please reach out to us at conta
         color: #0D5C63;
         margin: 0;
         padding-top: 10px;
+    }
+
+    .arrow{
+        border: solid #0D5C63;
+        border-width: 0 10px 10px 0;
+        display: inline-block;
+        padding: 10px;
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+    }
+
+    .circle{
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        background-color: white;
+        border: #0D5C63 2px solid;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .backbutton{
+        position: fixed;
+        cursor: pointer;
+        top: 85vh;
+        left: 2.5vw;
+        
     }
 </style>
